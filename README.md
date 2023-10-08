@@ -9,4 +9,4 @@ Motor Driving: To handle the car's powerful motor, we opted for the HW-039 motor
 
 Development Environment: We used platformio(I think it is the best choise for using arduino ide).
 
-Here is Lezgin's github page you can follow up too github.com/Yangwen-li13
+You can also visit Lezgin's github page github.com/Yangwen-li13
