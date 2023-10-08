@@ -13,6 +13,8 @@ typedef struct message
 message outgoing_message;
 
 void send(message *table);
+void adcPotRead();
+void adcStickRead();
 
 void setup()
 {
@@ -22,14 +24,12 @@ void setup()
   UCSR0C |= (1 << UCSZ00) | (1 << UCSZ01); 
   UCSR0A |= (1 << U2X0);    //  fast mode
   UBRR0 = 16;       //  adjusting baudrate to 115200
-
-  DDRC = (~(1<<DDC0)) && (~(1<<DDC1)); // ADC pins
 }
 
 void loop()
 {
-  outgoing_message.dir = PINC(PINC0);
-  outgoing_message.speed = PINC(PINC1);
+  adcPotRead();
+  adcStickRead();
   send(&outgoing_message);
   Serial.println();
   delay(25);
@@ -38,4 +38,18 @@ void loop()
 void send(message *table)
 {
   Serial.write((char *)table, sizeof(message));
+}
+
+void adcPotRead(){
+  ADMUX |= 0b00000001;  // adc1
+  ADCSRA |= 0b11000000;
+  while(bit_is_set(ADCSRA, ADSC));
+  outgoing_message.speed = ADCL | (ADCH << 8);
+}
+
+void adcStickRead(){
+  ADMUX |= 0b00000000;  // adc0
+  ADCSRA |= 0b11000000;
+  while(bit_is_set(ADCSRA, ADSC));
+  outgoing_message.dir = ADCL | (ADCH << 8);
 }
