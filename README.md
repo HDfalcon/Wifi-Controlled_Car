@@ -8,3 +8,5 @@ WiFi Communication: For WiFi communication, we utilized the esp-now library. Esp
 Motor Driving: To handle the car's powerful motor, we opted for the HW-039 motor driver, capable of managing a maximum current of 20A and a maximum voltage of 27V.
 
 Development Environment: We used platformio(I think it is the best choise for using arduino ide).
+
+Here is Lezgin's github page you can follow up too github.com/Yangwen-li13
