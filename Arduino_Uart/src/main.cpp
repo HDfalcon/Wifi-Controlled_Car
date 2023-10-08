@@ -23,13 +23,13 @@ void setup()
   UCSR0A |= (1 << U2X0);    //  fast mode
   UBRR0 = 16;       //  adjusting baudrate to 115200
 
-  DDRC = _BV(DDC0) && _BV(DDC1); // ADC pins
+  DDRC = (~(1<<DDC0)) && (~(1<<DDC1)); // ADC pins
 }
 
 void loop()
 {
-  outgoing_message.dir = PORTC(PORTC0);
-  outgoing_message.speed = PORTC(PORTC1);
+  outgoing_message.dir = PINC(PINC0);
+  outgoing_message.speed = PINC(PINC1);
   send(&outgoing_message);
   Serial.println();
   delay(25);
