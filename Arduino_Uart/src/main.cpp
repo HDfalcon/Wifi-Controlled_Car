@@ -1,8 +1,15 @@
 #include <Arduino.h>
 
-#define pot A0
-#define joystick A1
+#define pot A0     //Unnecessary 
+#define joystick A1  //Unnecessary
 #define PORTC _SFR_IO8(0x08);
+
+#define buttonA 2
+#define buttonB 3
+#define buttonC 4
+#define buttonD 5
+#define buttonE 6
+#define buttonF 7
 
 typedef struct message
 {
